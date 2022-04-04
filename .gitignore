@@ -1,0 +1,6 @@
+# Ignore chromedriver
+bin/chromedriver.exe
+data
+bin/data
+bin/__pycache__
+.idea
