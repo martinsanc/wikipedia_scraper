@@ -1,5 +1,5 @@
 # Ignore chromedriver
-bin/chromedriver.exe
+*.exe
 data
 bin/data
 bin/__pycache__
