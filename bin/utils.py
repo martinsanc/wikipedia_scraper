@@ -6,4 +6,4 @@ def clean_string(s):
     s = re.sub(r"\[.*\]", "", s)
 
     # Elimina caracteres no deseados
-    return re.sub(r"[^a-zA-Z0-9\s]", "", s)
+    return re.sub(r"[^a-zA-Z0-9\s\,\.]", "", s)
