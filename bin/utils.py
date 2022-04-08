@@ -1,14 +1,9 @@
 import re
 
 
-def clean_string(str):
+def clean_string(s):
     # Elimina referencias ("[a]", "[1]"...) del texto
-    str = re.sub(r"\[.*\]", "", str)
+    s = re.sub(r"\[.*\]", "", s)
 
     # Elimina caracteres no deseados
-    str = re.sub(r"[^a-zA-Z0-9\s]", "", str)
-
-    # Elimina dobles espacios
-    str = re.sub("\s\s", "\s", str)
-
-    return str.strip()
+    return re.sub(r"[^a-zA-Z0-9\s]", "", s)

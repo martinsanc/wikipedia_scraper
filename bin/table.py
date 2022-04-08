@@ -39,7 +39,7 @@ class Table:
                 for j in range(len(headers)):
                     cell = self.driver.driver.find_element_by_xpath(self.xpath + "tbody/tr[" + str(i) + "]/td[" + str(j+1) + "]")
                     dict[headers[j]] = clean_string(cell.text)
-                if dict is not {}:
+                if bool(dict):
                     data.append(dict)
                     count = 0
                 else:
@@ -65,7 +65,7 @@ class Table:
         while flag:
             try:
                 header = self.driver.driver.find_element_by_xpath(self.xpath + "thead/tr/th[" + str(i) + "]")
-                headers.append(clean_string(header.text))
+                 headers.append(clean_string(header.text))
                 i += 1
             except:
                 flag = False
