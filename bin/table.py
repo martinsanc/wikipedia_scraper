@@ -65,7 +65,7 @@ class Table:
         while flag:
             try:
                 header = self.driver.driver.find_element_by_xpath(self.xpath + "thead/tr/th[" + str(i) + "]")
-                 headers.append(clean_string(header.text))
+                headers.append(clean_string(header.text))
                 i += 1
             except:
                 flag = False
