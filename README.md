@@ -12,8 +12,8 @@ Martín y Marina Peña Alonso
 + **driver.py** Ejecuta el driver mediante la herramienta Selenium y cambia el agente de usuario o Usaer agent para no ser bloqueado y detectado en algunos casos por los robots.
 + **utils.py** Función encargada de limpiar las celdas escrapeadas.
 + **table.py** Script que realiza el proceso de scrapeamiento llamando y aplicando a los scripts anteriores y almacena los datos extraidos de la web en su correspondiente csv.
-+**main.py** Función encargada de pasar el url, xpath y el nombre del csv de los datos que queremos extaer de la wikipedia.
-+**csv_handler.py** Se encarga de agrupar los csv creados anteriormente en uno solo para presentarlo como resultado final.
++ **main.py** Función encargada de pasar el url, xpath y el nombre del csv de los datos que queremos extaer de la wikipedia.
++ **csv_handler.py** Se encarga de agrupar los csv creados anteriormente en uno solo para presentarlo como resultado final.
 
 ## Comentarios
 
