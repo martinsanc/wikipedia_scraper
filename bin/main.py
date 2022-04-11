@@ -39,9 +39,9 @@ def read_tables():
 
 
 if __name__ == '__main__':
-    # driver = Driver()
-    # dfs = read_tables()
-    # driver.quit()
+    driver = Driver()
+    dfs = read_tables()
+    driver.quit()
 
     dfs = read_csv(names)
     df = merge_csvs(dfs)
