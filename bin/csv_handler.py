@@ -7,26 +7,39 @@ Created on Wed Apr  6 16:07:47 2022
 
 import glob
 import pandas as pd
-import os 
+import os
+from utils import clean_string
 
-#Cambiamos el directorio para acceder a los csv creados
-a = os.getcwd()
-os.chdir(a +'/data/')
-
-# Especificamos un patrón de los csv
-files = glob.glob('*.csv')
-# Mostrar el archivo csv_files, el cual es una lista de nombres
-# joining files with concat and read_csv
+out_path = '../../CSV_FINAL.csv'
 
 
-df1 = pd.read_csv(files[0], index_col=None)
+def read_csv(names):
+    # Devuelve los ficheros csv
+    # Cambiamos el directorio para acceder a los csv creados
+    a = os.getcwd()
+    os.chdir(a + '/data/')
+    # Especificamos un patrón de los csv
+    dfs = []
+    for n in names:
+        print("Leyendo " + n + '.csv')
+        df = pd.read_csv(n + '.csv', index_col=None)
 
-for i in range(1,len(files)):
-    df2 = pd.read_csv(files[i], index_col=None)
-    # Cambiamos el nombre de la columna que contiene los paises para unir los dataframes
-    df2 = df2.rename(columns={df2.columns[0]:'Country'})
-    df1 = df1.merge(df2, how='left', on='Country')
-    print(df1.iloc[1])
+        print("  Limpiando datos")
+        for col in df:
+            df[col] = df[col].apply(clean_string)
+        df.columns = df.columns.to_series().apply(clean_string)
+        dfs.append(df)
+    return dfs
 
-df.to_csv('CSV_Final.csv')
 
+def merge_csvs(dfs):
+    print("Merging Dataframes")
+    df_master = dfs[0]
+    df_master = df_master.rename(columns={df_master.columns[0]: 'Country'})
+    for i in range(1, len(dfs)):
+        df = dfs[i]
+        df.rename(columns={df_master.columns[0]: 'Country'})
+        df_master = df_master.merge(df, on=['Country'])
+    print("Writing file to " + out_path)
+    df_master.to_csv(out_path)
+    return df_master

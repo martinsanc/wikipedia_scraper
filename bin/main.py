@@ -6,40 +6,47 @@ Created on Fri Apr  4 22:54:42 2022
 """
 from driver import Driver
 from table import Table
+from csv_handler import *
+from utils import clean_string
 
-#from IPython.display import display
+names = [
+    'poblacion',
+    'desempleo',
+    'suicidios',
+    'obesidad'
+]
+urls = [
+    'https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)',
+    'https://en.wikipedia.org/wiki/List_of_countries_by_unemployment_rate',
+    'https://en.wikipedia.org/wiki/List_of_countries_by_suicide_rate',
+    'https://en.wikipedia.org/wiki/List_of_countries_by_obesity_rate'
+]
+xpaths = [
+    '/html/body/div[3]/div[3]/div[5]/div[1]/table/',
+    '/html/body/div[3]/div[3]/div[5]/div[1]/table[1]/',
+    '/html/body/div[3]/div[3]/div[5]/div[1]/table[1]/',
+    '/html/body/div[3]/div[3]/div[5]/div[1]/table/'
+]
+
+
+def read_tables():
+    for i in range(len(urls)):
+        path = 'data/' + names[i] + '.csv'
+        print("Scrapeando tabla " + names[i])
+        t = Table(driver, urls[i], xpaths[i])
+        t.data2csv('data/' + names[i] + '.csv')
+        print("  Guardado " + names[i] + '.csv')
+
 
 if __name__ == '__main__':
+    # driver = Driver()
+    # dfs = read_tables()
+    # driver.quit()
 
-    driver = Driver()
+    dfs = read_csv(names)
+    df = merge_csvs(dfs)
+    dfs[0].head()
 
-    url = 'https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)'
-    xpath = '/html/body/div[3]/div[3]/div[5]/div[1]/table/'
-    t = Table(driver, url, xpath)
-    t.data2csv('data/poblacion.csv')
-    
-    url = 'https://en.wikipedia.org/wiki/List_of_official_languages_by_country_and_territory'
-    xpath = '/html/body/div[3]/div[3]/div[5]/div[1]/table[2]/'
-    t = Table(driver, url, xpath)
-    t.data2csv('data/idioma.csv')
-    
-    url = 'https://en.wikipedia.org/wiki/List_of_countries_by_unemployment_rate'
-    xpath = '/html/body/div[3]/div[3]/div[5]/div[1]/table[1]/'
-    t = Table(driver, url, xpath)
-    t.data2csv('data/desempleo.csv')
-    
-    url = 'https://en.wikipedia.org/wiki/List_of_countries_by_suicide_rate'
-    xpath = '/html/body/div[3]/div[3]/div[5]/div[1]/table[1]/'
-    t = Table(driver, url, xpath)
-    t.data2csv('data/suicidios.csv')
-    
-    url = 'https://en.wikipedia.org/wiki/List_of_countries_by_obesity_rate'
-    xpath = '/html/body/div[3]/div[3]/div[5]/div[1]/table/'
-    t = Table(driver, url, xpath)
-    t.data2csv('data/obesidad.csv')
-    
-    
-    #display(t1.df.head())
 
-    driver.quit()
+
 
