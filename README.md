@@ -14,6 +14,7 @@ Martín Sánchez Pueyo y Marina Peña Alonso
 + **table.py** Script que realiza el proceso de scrapeamiento llamando y aplicando a los scripts anteriores y almacena los datos extraidos de la web en su correspondiente csv.
 + **main.py** Función encargada de pasar el url, xpath y el nombre del csv de los datos que queremos extaer de la wikipedia.
 + **csv_handler.py** Se encarga de agrupar los csv creados anteriormente en uno solo para presentarlo como resultado final.
++ **visualization.py** Genera plots a partir de los datos
 
 ## Comentarios
 
