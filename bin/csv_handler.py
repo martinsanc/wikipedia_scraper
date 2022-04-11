@@ -41,5 +41,5 @@ def merge_csvs(dfs):
         df.rename(columns={df_master.columns[0]: 'Country'})
         df_master = df_master.merge(df, on=['Country'])
     print("Writing file to " + out_path)
-    df_master.to_csv(out_path)
+    df_master.to_csv(out_path, index=False)
     return df_master
