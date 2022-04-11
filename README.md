@@ -5,7 +5,7 @@ En esta práctica correspondiente a la  asignatura Tipología y ciclo de vida de
 
 ## Miembros del equipo
 
-Martín y Marina Peña Alonso
+Martín Sánchez Pueyo y Marina Peña Alonso
 
 ## Ficheros del código fuente
 
