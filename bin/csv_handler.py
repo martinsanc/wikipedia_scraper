@@ -33,13 +33,13 @@ def read_csv(names):
 
 
 def merge_csvs(dfs):
-    print("Merging Dataframes")
+    print("Uniendo Datasets")
     df_master = dfs[0]
     df_master = df_master.rename(columns={df_master.columns[0]: 'Country'})
     for i in range(1, len(dfs)):
         df = dfs[i]
         df.rename(columns={df_master.columns[0]: 'Country'})
         df_master = df_master.merge(df, on=['Country'])
-    print("Writing file to " + out_path)
+    print("Escribiendo " + out_path)
     df_master.to_csv(out_path, index=False)
     return df_master

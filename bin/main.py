@@ -4,10 +4,14 @@ Created on Fri Apr  4 22:54:42 2022
 
 @author: Marina, Martin
 """
+import mapclassify
+
 from driver import Driver
 from table import Table
 from csv_handler import *
-from utils import clean_string
+from visualization import *
+
+
 
 names = [
     'poblacion',
@@ -40,12 +44,18 @@ def read_tables():
 
 if __name__ == '__main__':
     driver = Driver()
-    dfs = read_tables()
+    # read_tables()
     driver.quit()
 
     dfs = read_csv(names)
     df = merge_csvs(dfs)
-    dfs[0].head()
+
+    plot_world(df, 4, 'Poblacion')
+    plot_world(df, 6, 'Desempleo [%]')
+    plot_world(df, 8, 'Suicidios [%]')
+    plot_world(df, 12, 'Obesidad [%]')
+    plot_2cols(df, 6, 8, 'Desempleo y suicidios', x_label='Desempleo', y_label='Suicidios')
+
 
 
 
